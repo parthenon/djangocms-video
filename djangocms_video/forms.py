@@ -11,6 +11,10 @@ YOUTUBE_URL_RE = re.compile(r'(?:(?:http://|https://|//)?(?:www\.)?youtu\.?be.*)
 YOUTUBE_VIDEO_ID_RE = re.compile(r'(?:[?&]v=|/embed/|/1/|/v/|https?://(?:www\.)?youtu\.be/)([^&\n?#]+)')
 DEFAULT_YOUTUBE_EMBED_URL = '//www.youtube.com/embed/{}'
 
+VIMEO_URL_RE = re.compile(r'(?:(?:http://|https://|//)?(?:www\.)?vimeo.*).*')
+VIMEO_VIDEO_ID_RE = re.compile(r'(?:vimeo\.com/?(video)?/)([^&\n?#]+)')
+DEFAULT_VIMEO_EMBED_URL = '//player.vimeo.com/video/{}?title=0&amp;byline=0&amp;portrait=0'
+
 
 class VideoPlayerPluginForm(forms.ModelForm):
     class Meta:
@@ -26,5 +30,10 @@ class VideoPlayerPluginForm(forms.ModelForm):
             results = YOUTUBE_VIDEO_ID_RE.findall(link)
             if results:
                 embed_url = getattr(settings, "DJANGOCMS_VIDEO_YOUTUBE_EMBED_URL", DEFAULT_YOUTUBE_EMBED_URL)
+                link = embed_url.format(results[0])
+        if VIMEO_URL_RE.match(link):
+            results = VIMEO_VIDEO_ID_RE.findall(link)
+            if results:
+                embed_url = getattr(settings, "DJANGOCMS_VIDEO_VIMEDO_EMBED_URL", DEFAULT_VIMEO_EMBED_URL)
                 link = embed_url.format(results[0])
         return link
