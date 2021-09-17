@@ -12,8 +12,8 @@ YOUTUBE_VIDEO_ID_RE = re.compile(r'(?:[?&]v=|/embed/|/1/|/v/|https?://(?:www\.)?
 DEFAULT_YOUTUBE_EMBED_URL = '//www.youtube.com/embed/{}'
 
 VIMEO_URL_RE = re.compile(r'(?:(?:http://|https://|//)?(?:www\.)?vimeo.*).*')
-VIMEO_VIDEO_ID_RE = re.compile(r'(?:vimeo\.com/?(video)?/)([^&\n?#]+)')
-DEFAULT_VIMEO_EMBED_URL = '//player.vimeo.com/video/{}?title=0&amp;byline=0&amp;portrait=0'
+VIMEO_VIDEO_ID_RE = re.compile(r'(?:vimeo\.com/?(?:video)?/)([^&\n?#]+)')
+DEFAULT_VIMEO_EMBED_URL = '//player.vimeo.com/video/{}'
 
 
 class VideoPlayerPluginForm(forms.ModelForm):
